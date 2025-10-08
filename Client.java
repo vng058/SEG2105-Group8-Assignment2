@@ -25,8 +25,12 @@ public class Client{
     }
 
     public void removeBankAccount(String id){
-        for(int i=0; i<accounts.size(); i++){
-            if (accounts.get(i).getId() == id){
+        // We're iterating backwards here, since if we remove the index of accounts as we iterate,
+        // we induce bugs where we can skip iterations - Matt
+        // If we care about speed, we can accounts into a hashmap for constant time access - Matt
+        for (int i = accounts.size() - 1; i >= 0; i--) {
+            // Need equals instead for strings - Matt
+            if (accounts.get(i).getId().equals(id)) {
                 accounts.remove(i);
             }
         }
@@ -46,8 +50,8 @@ public class Client{
 
     public int getTotalLoyaltyPoints(){ 
         int totalLoyaltyPoints = 0;
-        for(int i=0; i<accounts.size(); i++){
-            totalLoyaltyPoints += accounts.get(i).getLoyaltyPoints();
+        for (BankAccount account : accounts) {
+            totalLoyaltyPoints += account.getLoyaltyPoints();
         }
         return totalLoyaltyPoints;
     }

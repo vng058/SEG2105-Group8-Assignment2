@@ -5,7 +5,8 @@ public abstract class BankAccount{
     protected Client client; // bc every bank account is associated with ONE client
     protected double balance;
     protected int loyaltyPoints;
-    protected static final int EARNINGRATE = 5; // -> means 5 loyalty points per dollar spent
+
+    protected static final int EARNING_RATE = 5; // -> means 5 loyalty points per dollar spent
 
     public BankAccount(Client client){
         this.client = client;
@@ -19,7 +20,7 @@ public abstract class BankAccount{
     }
 
     public void withdraw(double amount){ // or using bank account to purchase something
-        loyaltyPoints += (int)Math.round(EARNINGRATE*amount); // -> means +5 loyalty points per dollar spent
+        loyaltyPoints += (int)Math.round(EARNING_RATE *amount); // -> means +5 loyalty points per dollar spent
         balance -= amount;
     }
 
@@ -35,19 +36,20 @@ public abstract class BankAccount{
 
     public String generateId(){
         Random rand = new Random();
-        String idStr = "";
+        // StringBuilder for time efficiency - Matt
+        StringBuilder idStr = new StringBuilder();
 
         for (int i = 0; i < 4; i++) {
             char letter = (char)('A' + rand.nextInt(26)); // generates a combo containing 4 random letters
-            idStr+=letter; // add onto the ID str
+            idStr.append(letter); // add onto the ID str
         }
 
         for (int i = 0; i < 4; i++) {
             char num = (char)(rand.nextInt(10)); // generates a combo containing 4 random ints
-            idStr+=num; // add onto ID str, now the str = [4 letters][4 numbers]
+            idStr.append(num); // add onto ID str, now the str = [4 letters][4 numbers]
         }
         
-        return idStr;
+        return idStr.toString();
     }
 
 }
