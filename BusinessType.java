@@ -1,0 +1,3 @@
+public enum BusinessType {
+    INVESTOR, INDIVIDUAL, SMALLBUSINESS, LARGEBUSINESS, NONE;
+}
