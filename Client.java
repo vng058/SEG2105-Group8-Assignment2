@@ -55,5 +55,37 @@ public class Client{
         }
         return totalLoyaltyPoints;
     }
-    
+    // === Add methods that CREATE and ADD accounts (Part 2 "add") ===
+    public SavingsAccount addSavingsAccount(float interestRate, String nickname) {
+        SavingsAccount a = new SavingsAccount(this, interestRate, nickname); // uses existing ctor
+        accounts.add(a);
+        return a;
+    }
+
+    public CheckingAccount addCheckingAccount(String nickname) {
+        CheckingAccount a = new CheckingAccount(this, nickname);
+        accounts.add(a);
+        return a;
+    }
+
+    public InvestmentAccount addInvestmentAccount(String nickname) {
+        InvestmentAccount a = new InvestmentAccount(this, nickname);
+        accounts.add(a);
+        return a;
+    }
+
+    public LoanAccount addLoanAccount(float interestRate) {
+        LoanAccount a = new LoanAccount(this, interestRate);
+        accounts.add(a);
+        return a;
+    }
+
+
+
+
+    // === List all associated objects (Part 2 "list") ===
+    public java.util.List<BankAccount> listAccounts() {
+        return java.util.Collections.unmodifiableList(accounts);
+    }
+
 }

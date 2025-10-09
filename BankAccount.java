@@ -45,7 +45,7 @@ public abstract class BankAccount{
         }
 
         for (int i = 0; i < 4; i++) {
-            char num = (char)(rand.nextInt(10)); // generates a combo containing 4 random ints
+            char num = (char)('0' + rand.nextInt(10)); // generates a combo containing 4 random ints
             idStr.append(num); // add onto ID str, now the str = [4 letters][4 numbers]
         }
         
